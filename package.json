@@ -1,0 +1,20 @@
+{
+  "name": "my-playwrite-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.58.1",
+    "@types/node": "^25.2.1"
+  },
+  "dependencies": {
+    "playwright-extra": "^4.3.6",
+    "playwright-extra-stealth": "^0.0.1",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
