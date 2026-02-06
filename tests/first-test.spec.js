@@ -5,8 +5,6 @@ test('check google now',async()=>{
     //chromeTest 
     const chromeContext =await chromium.launchPersistentContext(userDataDir,{
         headless:false,
-        channel:'chrome',
-        args:['--disable-blink-features=AutomationControlled']
     })
     const pageChrome = chromeContext.pages()[0]
     await pageChrome.goto('https://www.google.com')
@@ -39,7 +37,6 @@ test('check google now',async()=>{
         'dom.webdriver.enabled': false,
         'useAutomationExtension': false,
     },
-    // ✅ แนะนำให้ใส่ UserAgent ของคนปกติเข้าไปด้วยครับ
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0'
     })
     const ffPage = ffContext.pages()[0]
