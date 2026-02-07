@@ -1,0 +1,18 @@
+const {test,expect} = require('@playwright/test')
+
+test('bypass-email',async({page})=>{
+    await page.goto('https://al-lubabah.vercel.app/auth')
+    const RegisterBtn = page.locator('p button[type="button"]')
+    await expect(RegisterBtn).toBeVisible()
+    await RegisterBtn.click()
+    const EmailBox = page.getByPlaceholder('your@email.com')
+    await EmailBox.click()
+    await EmailBox.fill('test@@gmail.com',)
+    const PwdBox = page.getByRole('textbox',{name:'••••••••'})
+    await PwdBox.click()
+    await PwdBox.fill('test123456')
+    const CreateAccountBtn = page.getByRole('button',{name:/Create Account|สร้างบัญชี/i})
+    await CreateAccountBtn.click()
+    const validateMessage =await EmailBox.evaluate(node=>node.validationMessage)
+    await expect(validateMessage).not.toBe('')
+})
