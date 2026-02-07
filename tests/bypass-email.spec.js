@@ -5,9 +5,8 @@ test.describe('bypass-email',() => {
         await page.goto('https://al-lubabah.vercel.app/auth')
     });
     test('injecting multiple @', async ({ page }) => {
-        const RegisterBtn = page.locator('p button[type="button"]')
-        await expect(RegisterBtn).toBeVisible()
-        await RegisterBtn.click()
+        const registerContext = page.locator('p button[type="button"]')
+        await registerContext.click()
         const EmailBox = page.getByPlaceholder('your@email.com')
         await EmailBox.click()
         await EmailBox.fill('test@@gmail.com',)
@@ -20,8 +19,8 @@ test.describe('bypass-email',() => {
         await expect(validateMessage).not.toBe('')
     });
     test('apply leading wthitespace',async({page})=>{
-        const createContext = page.locator('p').getByRole('button',{name:/Create Account|สร้างบัญชี/i})
-        await createContext.click()
+        const registerContext = page.locator('p').getByRole('button',{name:/Create Account|สร้างบัญชี/i})
+        await registerContext.click()
         const emailBox = page.getByPlaceholder('your@email.com')
         await emailBox.click()
         await emailBox.fill(' user@gmail.com')
@@ -39,8 +38,8 @@ test.describe('bypass-email',() => {
         }
     });
     test('apply trailing whitespace',async({page})=>{
-        const createContext = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
-        await createContext.click()
+        const registerContext = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
+        await registerContext.click()
         const emailBox = page.getByRole('textbox',{name:'your@email.com'})
         await emailBox.click()
         await emailBox.fill('user@gmail.com ')
@@ -51,5 +50,24 @@ test.describe('bypass-email',() => {
         await createBtn.click()
         const inputValue =await emailBox.inputValue()
         await expect(inputValue).toBe('user@gmail.com')
+    });
+    test('boundary whitespace around @',async({page})=>{
+        const registerContext = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
+        await registerContext.click()
+        const emailBox = page.getByRole('textbox',{name:'your@email.com'})
+        await emailBox.click()
+        await emailBox.fill('user @ gmail.com')
+        const pwdBox = page.locator('input[type="password"]')
+        await pwdBox.click()
+        await pwdBox.fill('test123456')
+        const createBtn = page.locator('button[type="submit"]')
+        await createBtn.click()
+        const inputValue =await emailBox.inputValue()
+        const validateMessage =await emailBox.evaluate(node=>node.validationMessage)
+        if(validateMessage){
+            await expect(validateMessage).not.toBe('')
+        }else{
+            await expect(inputValue).toBe('user@gmail.com')
+        }
     })
 })
