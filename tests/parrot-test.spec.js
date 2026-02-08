@@ -1,5 +1,5 @@
 const {test,expect} = require('@playwright/test')
-test('check google now',async({page})=>{
+test('chlick first parrot img',async({page})=>{
     await page.goto('https://www.google.com/search?q=parrot&tbm=isch')
     await page.waitForTimeout(1000)
     const firstImgChrome =page.locator('img[alt*="parrot" i]').first()

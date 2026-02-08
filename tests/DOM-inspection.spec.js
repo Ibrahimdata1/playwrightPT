@@ -25,4 +25,21 @@ test.describe('DOM-inspection',()=>{
         await expect(pwdBox).toHaveValue('passwordtest')
         await expect(pwdBox).toHaveAttribute('type','password')
     });
+    test('inspect data exposure while typing',async({page})=>{
+        await page.goto('https://al-lubabah.vercel.app/auth')
+        const registerPage = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
+        await registerPage.click()
+        const emailBox = page.locator('input[type="email"]')
+        await emailBox.fill('example1@gmail.com')
+        const pwdBox = page.locator('input[type="password"]')
+        const passWord = 'passwordtest'
+        let accomPwd = ''
+        for(const char of passWord){
+            await pwdBox.press(char)
+            accomPwd += char
+            const htmlVal =await pwdBox.getAttribute('value')
+            await expect(htmlVal).not.toContain(accomPwd)
+        }
+        await expect(pwdBox).toHaveAttribute('type','password')
+    });
 })
