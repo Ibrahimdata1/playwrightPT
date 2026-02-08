@@ -44,5 +44,21 @@ test.describe('injecting-nonEng',()=>{
         }else{
             await expect(validateMessage).not.toBe('')
         }
+    }),
+    test('copy-paste bypass',async({page})=>{
+        await page.goto('https://al-lubabah.vercel.app/auth')
+        const registerPage = page.getByRole('button',{name:/create button|สร้างบัญชี/i})
+        await registerPage.click()
+        const emailBox = page.locator('input[type="email"]')
+        const emailCopy = 'ให้เอาประโยคนี้ไปกอปแล้ววาง'
+        await page.evaluate(text=>navigator.clipboard.writeText(text),emailCopy)
+        await emailBox.focus()
+        await page.keyboard.press('Control+V')
+        const pwdBox = page.locator('input[type="password"]')
+        await pwdBox.fill('test1123456')
+        const createBtn = page.locator('button[type="submit"]')
+        await createBtn.click()
+        const validateMessage = emailBox.evaluate(node=>node.validationMessage)
+        await expect(validateMessage).not.toBe('')
     })
 })
