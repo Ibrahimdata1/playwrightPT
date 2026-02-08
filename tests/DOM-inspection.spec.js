@@ -13,5 +13,16 @@ test.describe('DOM-inspection',()=>{
         const outerHTML = await pwdBox.evaluate(node=>node.outerHTML)
         const pwdInputValue = await pwdBox.inputValue()
         await expect(outerHTML).not.toMatch(new RegExp(pwdInputValue,'i'))
-    })
+    }),
+    test('inspecting input type password',async({page})=>{
+        await page.goto('https://al-lubabah.vercel.app/auth')
+        const registerPage = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
+        await registerPage.click()
+        const emailBox = page.locator('input[type="email"]')
+        await emailBox.fill('example1@gmail.com')
+        const pwdBox = page.locator('input[type="password"]')
+        await pwdBox.fill('passwordtest')
+        await expect(pwdBox).toHaveValue('passwordtest')
+        await expect(pwdBox).toHaveAttribute('type','password')
+    });
 })
