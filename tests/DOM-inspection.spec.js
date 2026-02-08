@@ -1,0 +1,17 @@
+const {test,expect} = require('@playwright/test')
+test.describe('DOM-inspection',()=>{
+    test('Visual Masking Checked',async({page})=>{
+        await page.goto('https://al-lubabah.vercel.app/auth')
+        const registerPage = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
+        await registerPage.click()
+        const emailBox = page.locator('input[type="email"]')
+        await emailBox.fill('example1@gmail.com')
+        const pwdBox = page.locator('input[type="password"]')
+        await pwdBox.fill('test123456')
+        await expect(pwdBox).toHaveValue('test123456')
+        await pwdBox.screenshot({path:'passwordMasked.png'})
+        const outerHTML = await pwdBox.evaluate(node=>node.outerHTML)
+        const pwdInputValue = await pwdBox.inputValue()
+        await expect(outerHTML).not.toMatch(new RegExp(pwdInputValue,'i'))
+    })
+})
