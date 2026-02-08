@@ -56,5 +56,18 @@ test.describe('DOM-inspection',()=>{
         await page.keyboard.press('Control+C')
         const clipBoardText =await page.evaluate(()=>navigator.clipboard.readText())
         await expect(clipBoardText).not.toMatch(/test123456/i)
+    });
+    test('toggle password',async({page})=>{
+        await page.goto('https://al-lubabah.vercel.app/auth')
+        const registerPage = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
+        await registerPage.click()
+        const pwdBox = page.getByRole('textbox',{name:/••••••••/i})
+        await pwdBox.fill('testpassword1234')
+        const eyeBtn = page.getByRole('button',{name:/Show password|hide password/i})
+        await expect(pwdBox).toHaveAttribute('type','password')
+        await eyeBtn.click()
+        await expect(pwdBox).toHaveAttribute('type','text')
+        await eyeBtn.click()
+        await expect(pwdBox).toHaveAttribute('type','password')
     })
 })
