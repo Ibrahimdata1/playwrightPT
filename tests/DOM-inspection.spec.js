@@ -42,4 +42,19 @@ test.describe('DOM-inspection',()=>{
         }
         await expect(pwdBox).toHaveAttribute('type','password')
     });
+    test('copy/cut masked dotted',async({page,context})=>{
+        await context.grantPermissions(['clipboard-read','clipboard-write'])
+        await page.goto('https://al-lubabah.vercel.app/auth')
+        const registerPage = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
+        await registerPage.click()
+        const emailBox = page.locator('input[type="email"]')
+        await emailBox.fill('example1@gmail.com')
+        const pwdBox = page.locator('input[type="password"]')
+        await pwdBox.fill('test123456')
+        await pwdBox.focus()
+        await page.keyboard.press('Control+A')
+        await page.keyboard.press('Control+C')
+        const clipBoardText =await page.evaluate(()=>navigator.clipboard.readText())
+        await expect(clipBoardText).not.toMatch(/test123456/i)
+    })
 })
