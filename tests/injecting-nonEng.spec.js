@@ -1,6 +1,9 @@
 const {test,expect}  = require('@playwright/test')
 
 test.describe('injecting-nonEng',()=>{
+    test.beforeEach(async({context})=>{
+        await context.grantPermissions(['clipboard-read','clipboard-write'])
+    })
     test('injecting Thai',async({page})=>{
         await page.goto('https://al-lubabah.vercel.app/auth')
         const registerPage = page.getByRole('button',{name:/create account|สร้างบัญชี/i})
@@ -58,7 +61,7 @@ test.describe('injecting-nonEng',()=>{
         await pwdBox.fill('test1123456')
         const createBtn = page.locator('button[type="submit"]')
         await createBtn.click()
-        const validateMessage = emailBox.evaluate(node=>node.validationMessage)
+        const validateMessage =await emailBox.evaluate(node=>node.validationMessage)
         await expect(validateMessage).not.toBe('')
     })
 })
