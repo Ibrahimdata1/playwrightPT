@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test')
-const {authPage} = require('../constants/urls')
+const {authPage} = require('../../constants/urls')
 test.describe('DOM-inspection', () => {
     test.beforeEach(async({page,context}) => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write'])

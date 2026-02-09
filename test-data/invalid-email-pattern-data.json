@@ -1,0 +1,22 @@
+[
+    {
+        "desc":"Missing @",
+        "email":"testgmail.com",
+        "pwd":"test123456"
+    },
+    {
+        "desc":"Missing domain",
+        "email":"test@",
+        "pwd":"test123456"
+    },
+    {
+        "desc":"Multiple @ signs",
+        "email":"test12@@gmail.com",
+        "pwd":"test123456"
+    },
+    {
+        "desc":"Special characters in domain",
+        "email":"test4544@gmail!.com",
+        "pwd":"test123456"
+    }
+]

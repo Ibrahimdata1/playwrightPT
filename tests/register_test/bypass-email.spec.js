@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test')
-const allTestData = require('../test-data/bypass-email-data.json')
-const {authPage} = require('../constants/urls')
+const allTestData = require('../../test-data/bypass-email-data.json')
+const {authPage} = require('../../constants/urls')
 test.describe('bypass-email', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(authPage)

@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test')
-const allTestData = require('../test-data/injecting-nonEng-data.json')
-const {authPage}= require('../constants/urls')
+const allTestData = require('../../test-data/injecting-nonEng-data.json')
+const {authPage}= require('../../constants/urls')
 test.describe('injecting-nonEng', () => {
     test.beforeEach(async ({page, context }) => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write'])

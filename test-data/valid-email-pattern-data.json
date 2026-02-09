@@ -1,0 +1,12 @@
+[
+    {
+        "desc":"Input standard Email",
+        "email":"user@domain.com",
+        "pwd":"test123465"
+    },
+    {
+        "desc":"Input sub-domain emails",
+        "email":"user@sub.domain.co.th",
+        "pwd":"test123465"
+    }
+]
