@@ -1,8 +1,9 @@
 const { test, expect } = require('@playwright/test')
 const allTestData = require('../test-data/bypass-email-data.json')
+const {authPage} = require('../constants/urls')
 test.describe('bypass-email', () => {
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://al-lubabah.vercel.app/auth')
+        await page.goto(authPage)
         const registerContext = page.getByRole('button', { name: /Create Account|สร้างบัญชี/i })
         await registerContext.click()
     });

@@ -1,8 +1,9 @@
 const { test, expect } = require('@playwright/test')
 const allTestData = require('../test-data/password-str-data.json')
+const {authPage} = require('../constants/urls')
 test.describe('Password Strength & Complexity Requirements', () => {
     test.beforeEach(async ({page}) => {
-        await page.goto('https://al-lubabah.vercel.app/auth')
+        await page.goto(authPage)
         const registerPage = page.getByRole('button', { name: /create account|สร้างบัญชี/i })
         await registerPage.click()
     });

@@ -1,9 +1,10 @@
 const { test, expect } = require('@playwright/test')
 const allTestData = require('../test-data/injecting-nonEng-data.json')
+const {authPage}= require('../constants/urls')
 test.describe('injecting-nonEng', () => {
     test.beforeEach(async ({page, context }) => {
         await context.grantPermissions(['clipboard-read', 'clipboard-write'])
-        await page.goto('https://al-lubabah.vercel.app/auth')
+        await page.goto(authPage)
         const registerPage = page.getByRole('button', { name: /create account|สร้างบัญชี/i })
         await registerPage.click()
     })
