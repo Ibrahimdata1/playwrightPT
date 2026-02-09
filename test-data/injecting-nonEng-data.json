@@ -1,0 +1,12 @@
+[
+    {
+        "desc":"injecting Thai",
+        "email":"ทดสอบ@gmail.com",
+        "pwd":"รหัสผ่าน1234"
+    },
+    {
+        "desc":"injecting Mix Language",
+        "email":"user_ไทย@domain.com",
+        "pwd":"Admin_ภาษาไทย"
+    }
+]

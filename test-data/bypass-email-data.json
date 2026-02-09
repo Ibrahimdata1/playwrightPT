@@ -1,0 +1,20 @@
+[
+    {
+        "desc": "apply leading wthitespace",
+        "email": " user@gmail.com",
+        "pwd": "test123456",
+        "expected": "user@gmail.com"
+    },
+    {
+        "desc": "apply trailing whitespace",
+        "email": "user@gmail.com ",
+        "pwd": "test123456",
+        "expected": "user@gmail.com"
+    },
+    {
+        "desc": "boundary whitespace around @",
+        "email": "user @ gmail.com",
+        "pwd": "test123456",
+        "expected": "user@gmail.com"
+    }
+]
