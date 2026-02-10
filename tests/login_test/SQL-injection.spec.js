@@ -12,7 +12,7 @@ test.describe('SQL Injection on Login Field', () => {
             const pwdBox = page.locator('input[type="password"]')
             await pwdBox.fill(`${data.pwd}`)
             const signinBtn = page.locator('button[type="submit"]')
-            const validationError = page.locator('li[role="status"]>>div.font-semibold', { hasText: /Validation Error|ข้อผิดพลาดในการตรวจสอบ|خطأ في التحقق/i })
+            const errorBoxPopup = page.locator('li[role="status"]>>div.font-semibold', { hasText: /Validation Error|ข้อผิดพลาดในการตรวจสอบ|خطأ في التحقق/i })
             let isRequest = false
             let request = null
             page.on('request', req => {
@@ -31,7 +31,7 @@ test.describe('SQL Injection on Login Field', () => {
                 const validateMessage = page.locator('li[role="status"]>>div.font-semibold', { hasText: /Login Failed|เข้าสู่ระบบไม่สำเร็จ|فشل تسجيل الدخول/i })
                 await expect(validateMessage).toBeVisible()
             } else {
-                await expect(validationError).toBeVisible()
+                await expect(errorBoxPopup).toBeVisible()
             }
         })
     }
