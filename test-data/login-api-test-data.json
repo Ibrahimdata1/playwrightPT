@@ -1,17 +1,27 @@
-[
-    {
-        "desc":"Standard Login",
-        "email":"example2025@gmail.com",
-        "pwd":"test123456"
-    },
-    {
-        "desc":"Case Insensitivity",
-        "email":"UsertEst@gmail.com",
-        "pwd":"test123456"
-    },
-    {
-        "desc":"Space Handling",
-        "email":" user1@test.com ",
-        "pwd":"test123456"
-    }
-]
+{
+    "auth": [
+        {
+            "email": "example2025@gmail.com",
+            "pwd": "test123456"
+        },
+        {
+            "email": "UsertEst@gmail.com",
+            "pwd": "test123456"
+        }
+    ],
+    "title": [
+        {
+            "desc": "Standard Login"
+        },
+        {
+            "desc": "Case Insensitivity"
+        }
+    ],
+    "backendTest": [
+        {
+            "desc": "Space Handling",
+            "email": " user1@test.com ",
+            "pwd": "test123456"
+        }
+    ]
+}
