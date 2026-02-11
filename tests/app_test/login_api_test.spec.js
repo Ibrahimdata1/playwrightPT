@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test')
-const allTestData = require('../test-data/login-api-test-data.json')
-const { apiUrlProfile, apiUrlPost } = require('../constants/api')
-test.describe('Verify successful login with valid credentials via API', () => {
+const allTestData = require('../../test-data/login-api-test-data.json')
+const { apiUrlProfile, apiUrlPost } = require('../../constants/api')
+test.describe.serial('Verify successful login with valid credentials via API', () => {
     let userId = null
     for (let i = 0; i < allTestData.title.length; i++) {
         const dataTitle = allTestData.title[i]
