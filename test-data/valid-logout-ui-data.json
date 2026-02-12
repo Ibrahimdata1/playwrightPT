@@ -1,0 +1,14 @@
+[
+    {
+        "desc": "Logout via the main navigation sidebar"
+    },
+    {
+        "desc": "Logout via the user profile dropdown"
+    },
+    {
+        "desc": "Click 'Logout' but then click 'Cancel' on the confirmation prompt "
+    },
+    {
+        "desc": "Click the 'Logout' button multiple times rapidly to see if it crashes or errors"
+    }
+]
